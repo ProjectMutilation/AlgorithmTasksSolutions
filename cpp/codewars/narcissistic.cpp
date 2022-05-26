@@ -4,11 +4,9 @@
 
 bool narcissistic(const unsigned int value){
   int numbers = std::log10(value) + 1;
-  int copy_value = value;
   unsigned int sum = 0;
-  for(int i = 0; i < numbers;i++){
-      sum +=pow(copy_value%10,numbers);
-      copy_value /= 10;
+  for(int tmp = value; tmp != 0; tmp /= 10){ 
+      sum += pow(tmp % 10,numbers);      
   }
-    return (sum == value) ? true:false;
+    return sum == value;
 }
