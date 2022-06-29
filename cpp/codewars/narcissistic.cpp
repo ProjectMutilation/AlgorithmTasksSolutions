@@ -1,12 +1,13 @@
 //https://www.codewars.com/kata/5287e858c6b5a9678200083c
 
 #include <cmath>
+#define step 10
 
 bool narcissistic(const unsigned int value){
-  int numbers = std::log10(value) + 1;
+  int numbers = int(std::log10(value)) + 1;
   unsigned int sum = 0;
-  for(int tmp = value; tmp != 0; tmp /= 10){ 
-      sum += pow(tmp % 10,numbers);      
+  for(unsigned int tmp = value; tmp != 0; tmp /= step){ 
+      sum += int(pow(tmp % step,numbers));      
   }
     return sum == value;
 }
