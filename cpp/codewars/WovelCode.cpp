@@ -1,3 +1,5 @@
+//https://www.codewars.com/kata/53697be005f803751e0015aa
+//write finction to replace all the lowercase vowels in a given string with numbers and function to turn to back
 #include <string>
 #include <iostream>
 #include <algorithm>
