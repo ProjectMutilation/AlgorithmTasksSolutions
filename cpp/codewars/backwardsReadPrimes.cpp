@@ -7,14 +7,13 @@ class BackWardsPrime
 public:
   static std::string backwardsPrime(long long start, long long end){
     std::string res;
-    bool prime, backwardsPrime, notSame;
     const auto sep = " ";
     for(auto i = start;i<=end;i++){
       auto reversed_item = reverse_item(i);
-      prime = isPrime(i);
-      backwardsPrime = isPrime(reversed_item);
-      notSame = i != reversed_item;
-      if(prime && notSame && backwardsPrime){
+      bool prime = isPrime(i);
+      bool backPrime = isPrime(reversed_item);
+      bool notSame = i != reversed_item;
+      if(prime && notSame && backPrime){
        res += std::to_string(i) + sep; 
       }
     }
