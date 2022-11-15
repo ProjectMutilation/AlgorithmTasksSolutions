@@ -9,5 +9,5 @@ static int digPow(int n, int p)
   for (int m = n; m > 0; m /= 10, --p)
     digit += std::pow(m % 10, p);
 
-  return digit % n ? -1 : digit / n;
+  return (digit % n) ? -1 : digit / n;
 }};
