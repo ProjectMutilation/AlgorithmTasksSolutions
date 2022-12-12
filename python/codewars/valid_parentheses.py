@@ -11,7 +11,7 @@ def valid_parentheses(string):
         elif(s == ')'):
             try:
                 stack.pop()
-            except:
+            except IndexError:
                 return False
 
     if(len(stack) == 0):
