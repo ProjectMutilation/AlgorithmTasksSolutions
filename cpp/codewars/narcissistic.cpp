@@ -4,10 +4,11 @@
 #define step 10
 
 bool narcissistic(const unsigned int value){
-  int numbers = int(std::log10(value)) + 1;
-  unsigned int sum = 0;
-  for(unsigned int tmp = value; tmp != 0; tmp /= step){ 
-      sum += int(pow(tmp % step,numbers));      
+  int valueLength = int(std::log10(value)) + 1;
+  unsigned int summationPoweredDigits = 0;
+  
+  for (unsigned int tmp = value; tmp != 0; tmp /= step){ 
+    summationPoweredDigits += int(pow(tmp % step,valueLength));      
   }
-    return sum == value;
+    return summationPoweredDigits == value;
 }
