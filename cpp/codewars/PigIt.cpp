@@ -4,40 +4,39 @@
 #include<string>
 #include<vector>
 #include<cctype>
-//TODO(mkor): rewrite this solution with using of regex 
-bool isnotAlphanumeric(std::string str){
-    for(int i=0; i<str.size(); i++){
-        if( !std::isalpha(str[i]) && !std::isdigit(str[i])){
-            return true;
-        }
-    }
-    return false;
+#include<sstream>
+
+bool isnotAlphanumeric(const std::string& input) {
+    return std::any_of(input.begin(), input.end(), [](char symb) {
+      return !std::isalpha(symb) && !std::isdigit(symb);
+    });
 }
-std::string pig_it(std::string str){
+std::string pig_it(std::string str) {
     std::vector<std::string> words;
-    std::string separator = " ";
+    char separator = ' ';
     size_t pos = 0;
     while ((pos = str.find(separator)) != std::string::npos) {
         words.push_back(str.substr(0, pos));
-        str.erase(0, pos + separator.length());
+        str.erase(0, pos + 1/*space*/);
     }
     words.push_back(str);
-    std::string result;
-    for (auto element : words) {
-        if ((element.size() == 1) && (isnotAlphanumeric(element))){
-         result.append(element+separator);   
-        }
-        else{
+    std::stringstream result;
+
+    for (auto& element : words) {
+        if ((element.size() == 1) && (isnotAlphanumeric(element))) {
+          result << element << separator;   
+        } else {
             char movedChar = element[0];
-            element.erase(0,1);
+            element.erase(0, 1);
             element.push_back(movedChar);
-            result.append(element);
-            result.append("ay");
-            result.append(separator);
+            result << element << "ay" << separator;
         }
     }
-    if(result.substr(result.length()-1,1) == " "){ 
-        result.pop_back();
+
+    auto ans = result.str();
+    if (ans.back() == ' ') { 
+        ans.pop_back();
     }
-    return result;
+
+    return ans;
 }
