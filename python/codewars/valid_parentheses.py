@@ -2,19 +2,7 @@
 # Write a function that takes a string of parentheses, and determines if the order of the parentheses is valid. 
 
 def valid_parentheses(string):
-    if string.count('(') != string.count(')'):
-        return False
-    stack = []
-    for s in string:
-        if s == '(':
-            stack.append(s)
-        elif s == ')':
-            try:
-                stack.pop()
-            except IndexError:
-                return False
-
-    if len(stack) == 0:
-        return True
-    else:
-        return False
+    string = "".join(ch for ch in string if ch in "()")
+    while "()" in string:
+        string = string.replace("()", "")
+    return not string
