@@ -4,26 +4,20 @@
 #include <algorithm>
 #include <unordered_map>
 
-std::unordered_map<char, char> replacements = {
-        {'a', 1},
-        {'e', 2},
-        {'i', 3},
-        {'o', 4},
-        {'u', 5},
-        {1, 'a'},
-        {2, 'e'},
-        {3, 'i'},
-        {4, 'o'},
-        {5, 'u'}
+const std::unordered_map<char, char> encode_replacements = {
+        {'a', '1'},
+        {'e', '2'},
+        {'i', '3'},
+        {'o', '4'},
+        {'u', '5'},
 };
 
-std::string encode(const std::string &str) {
-   return impl(str, replacements);
-}
-
-
-std::string decode(const std::string &str) {
-   return impl(str, replacements);
+const std::unordered_map<char, char> decode_replacements = {
+        {'1', 'a'},
+        {'2', 'e'},
+        {'3', 'i'},
+        {'4', 'o'},
+        {'5', 'u'},
 };
 
 std::string impl(const std::string& str, const std::unordered_map<char, char>& repl) {
@@ -33,5 +27,14 @@ std::string impl(const std::string& str, const std::unordered_map<char, char>& r
          ch = repl.at(ch);
       }
    });
+  
    return output;
 }
+
+std::string encode(const std::string& str) {
+   return impl(str, encode_replacements);
+}
+
+std::string decode(const std::string& str) {
+   return impl(str, decode_replacements);
+};
